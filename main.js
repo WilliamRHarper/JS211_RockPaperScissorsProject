@@ -17,6 +17,7 @@ const rockPaperScissors = (hand1, hand2) => {
   hand2 = hand2.trim();
   hand1 = hand1.toLowerCase();
   hand2 = hand2.toLowerCase();
+  let inputs = ['rock', 'paper', 'scissors']
   // 1. If User1 input is 'rock' and User2 input is 'scissor', User1 wins.
   if (hand1 === "rock" && hand2 === "scissors") {
     return "Hand one wins!";
@@ -53,9 +54,13 @@ const rockPaperScissors = (hand1, hand2) => {
   if (hand1 === "scissors" && hand2 === "scissors") {
     return "It's a tie!";
   }
+  for (let i = 0; i < inputs.length; i++){
   // Write code here
   // Use the unit test to see what is expected
-
+  if (hand1 === '' && hand2 === inputs[i] || hand1 === inputs[i] && hand2 === '') {
+    return "Please input rock, paper or scissors";
+  }
+}
 }
 
 // the first function called in the program to get an input from the user
@@ -91,6 +96,9 @@ if (typeof describe === 'function') {
       assert.equal(rockPaperScissors('rOcK', ' paper '), "Hand two wins!");
       assert.equal(rockPaperScissors('Paper', 'SCISSORS'), "Hand two wins!");
       assert.equal(rockPaperScissors('rock ', 'sCiSsOrs'), "Hand one wins!");
+    });
+    it('should detect if there is no input given' , () => {
+      assert.equal(rockPaperScissors('', 'paper'), "Please input rock, paper or scissors");
     });
   });
 } else {
