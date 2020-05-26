@@ -60,6 +60,9 @@ const rockPaperScissors = (hand1, hand2) => {
   if (hand1 === '' && hand2 === inputs[i] || hand1 === inputs[i] && hand2 === '') {
     return "Please input rock, paper or scissors";
   }
+  if (hand1 !== inputs[i] || hand2 !== inputs[i]){
+    return "Please input rock, paper or scissors";
+  }
 }
 }
 
@@ -99,6 +102,9 @@ if (typeof describe === 'function') {
     });
     it('should detect if there is no input given' , () => {
       assert.equal(rockPaperScissors('', 'paper'), "Please input rock, paper or scissors");
+    });
+    it('should detect wrong input given' , () => {
+      assert.equal(rockPaperScissors('dynamite', 'paper'), "Please input rock, paper or scissors");
     });
   });
 } else {
